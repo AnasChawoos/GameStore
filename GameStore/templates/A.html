@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <title>Document</title>
+</head>
+<body style="background-image: url(static/images/gamestore.jpg); background-repeat: no-repeat; background-size: cover;" >
+
+{% if request.user.is_authenticated %}
+  
+
+    
+     {% if request.user.is_superuser %}
+     <h1 class="style" align="center">Index Page</h1>
+     <h3 align="center"><a href="/LG">Logout</a></h3>
+     <h3 align="center"><a href="/D">Add product</a></h3>
+     <h3 align="center"><a href="/H">Products</a></h3>
+     <h3 align="center"><a href="/P">Show Cart</a></h3>
+     <h3 align="center"><a href="/RO">Show Orders</a></h3>
+       
+
+       
+
+    {% elif request.user.is_staff %}  
+    <h1 align="center">Index Page</h1>
+    <h3 align="center"><a href="/D">Add product</a></h3>
+    <h3 align="center"><a href="/H">Products</a></h3>
+    <h3 align="center"><a href="/P">Show Cart</a></h3>
+    <h3 align="center"><a href="/RO">Show Orders</a></h3>
+    <h3 align="center"><a href="/LG">Logout</a></h3>
+
+    {% else %}
+    <h1 align="center">Index Page</h1>
+    <h3 align="center"><a href="/H">Products</a></h3>
+    <h3 align="center"><a href="/P">Show Cart</a></h3>
+    <h3 align="center"><a href="/RO">Show Orders</a></h3>
+    <h3 align="center"><a href="/LG">Logout</a></h3>
+    {% endif %}
+
+
+       
+   
+
+{% else %}
+    <h1 align="center">Index Page</h1>
+    <h3 align="center"><a href="/W">Register</a></h3>
+    <h3 align="center"><a href="/L">Login</a></h3>
+
+{% endif %}    
+
+    
+   
+</body>
+</html>

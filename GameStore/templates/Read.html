@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1 align="center">Game Data</h1>
+    <table align="center" border="2">
+        <form method="POST">
+            {% csrf_token %}
+            <tr>
+                <th><input type="search" name="search" id="search"></th>
+                <th><input type="submit" value="Submit"></th>
+            </tr>
+
+        </form>
+    </table>
+    <br>
+    <br>
+    <br>
+    <table align="center" border="2" width="10" height="10">
+
+        <tr>
+            <th>SR.NO</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>Cart</th>
+            
+        
+        </tr>
+
+        {% for x in data %}
+
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><a href="/RPD/{{ x.id }}">{{ x.name }}</a><td>
+            <td>{{ x.price }}</td>
+            <td><img src=" {{ x.image.url }} " width="50px" height="50px" ></td>
+            <td><a href="/update/{{ x.id }}">Update</a></td>
+            <td><a href="/delete/{{ x.id }}">Delete</a></td>
+            <td><a href="/Cart/{{ x.id }}">Add To Cart</a></td>
+
+
+        </tr>
+        {% endfor %}
+
+    </table>
+    <script>
+        $( function() {
+          var availableTags = [];
+
+          "{% for x in data %}"
+              availableTags.push("{{ x.name }}")
+
+
+          "{% endfor %}"  
+          
+           
+          $( "#search" ).autocomplete({
+            source: availableTags
+          });
+        } );
+        </script>
+        
+
+    <h3 align="center"><a href="/">Back to Index </a></h3>
+</body>
+</html>

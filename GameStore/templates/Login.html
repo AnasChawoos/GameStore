@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 align="center">Login Form</h1>
+
+    <table align="center" border="2">
+        <form method="POST">
+            {% csrf_token %}
+            <tr>
+                <th>UserName</th>
+                <td><input type="text" name="username"></td>
+            </tr>
+
+            <tr>
+                <th>Password</th>
+                <td><input type="password" name="password"></td>
+            </tr>
+
+            <tr>
+                <th colspan="2" align="center"><input type="submit" value="Submit"></th>
+            </tr>
+        </form>
+    </table>
+
+    <h3 align="center">{{ error }}</h3>
+    <h3 align="center"><a href="/FP2">Forget Password</a></h3>
+</body>
+</html>
